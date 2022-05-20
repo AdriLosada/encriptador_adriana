@@ -1,0 +1,88 @@
+
+
+var inputMensaje = document.querySelector("#mensaje");
+var inputResultado = document.querySelector("#resultado");
+
+var btnEncriptar = document.querySelector("#encriptar");
+var btnDesencriptar = document.querySelector("#desencriptar");
+var btnCopiar = document.querySelector("#copiar");
+var btnEscuchar = document.querySelector("#escuchar");
+
+
+function validarMensaje() {
+    // Borrar errores previos
+    let erroresPrevios = contenedorErrores.querySelectorAll(".error");
+    for (let err of erroresPrevios) {
+        var contenedorErrores = document.querySelector(".contenedor-errores");
+        contenedorErrores.removeChild(err);
+    }
+
+    let letrasValidas = "abcdefghijklmnñopqrstuvwxyz ";
+    let mensajeError = document.createDocumentFragment();
+    for (let letra of mensajes) {
+        var mensaje = inputMensaje.value;
+        if (!letrasValidas.includes(letra)) {
+            let = document.createElement("");
+            setAttribute("class", "error");
+            textContent = `La letra ${letra} no es válida`;
+            mensajeError.appendChild();
+        }
+    }
+    contenedorErrores.appendChild(mensajeError);
+    if (contenedorErrores.children.length === 0) {
+        return true;
+
+    }
+    return false;
+}
+
+function encriptar() {
+    if (!validarMensaje()) {
+        var mensaje = inputMensaje.value;
+        var mensajeEncriptado = mensaje;
+        replaceAll("e", "enter");
+        replaceAll("i", "imes");
+        replaceAll("o", "ober");
+        replaceAll("a", "ai");
+        replaceAll("u", "ufat");
+        inputResultado.value = mensajeEncriptado;
+    } return;
+
+}
+
+function desencriptar() {
+
+    if (!validarMensaje()) {
+        var mensajeEncriptado = inputMensaje.value;
+        var mensaje = mensajeEncriptado;
+        replaceAll("enter", "e");
+        replaceAll("imes", "i");
+        replaceAll("ober", "o");
+        replaceAll("ai", "a");
+        replaceAll("ufat", "u");
+
+        inputResultado.value = mensaje;
+    } return;
+}
+
+function copiar() {
+    var mensajeEncriptado = inputResultado.value;
+    navigator.clipboard.writeText(mensajeEncriptado);
+    inputMensaje.value = "";
+    inputMensaje.focus();
+}
+
+function escuchar() {
+    var mensajeEncriptado = inputResultado.value;
+    let msg = new SpeechSynthesisUtterance();
+    msg.text = mensajeEncriptado;
+    msg.lang = "es-Es";
+    window.speechSynthesis.speak(msg);
+}
+
+
+
+
+var btnCopiar = onclick = escuchar;
+
+
